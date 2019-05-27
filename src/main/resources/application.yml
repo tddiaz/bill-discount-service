@@ -1,0 +1,6 @@
+spring:
+  application:
+   name: bill-discount-service
+
+server:
+  port: 30080
