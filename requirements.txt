@@ -7,4 +7,4 @@ as a discount).
 5. The percentage based discounts do not apply on groceries.
 6. A user can get only one of the percentage based discounts on a bill.
 
-Write an app, which exposes an API such that given a bill, it finds the net payable amount.
+Write a service, which exposes an API such that given a bill, it finds the net payable amount.
