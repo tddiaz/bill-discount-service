@@ -13,11 +13,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BillTest {
 
     private static final MonetaryAmount AMOUNT = Money.of(BigDecimal.valueOf(1000), "USD");
-    private static final LocalDate NOW = LocalDate.now();
+    private static final LocalDate DATE = LocalDate.of(2019, 01, 01);
 
     @Test
     public void whenCreate_shouldReturnBill() {
-        Customer customer = new Customer(CustomerType.REGULAR, NOW);
+        Customer customer = new Customer(CustomerType.REGULAR, DATE);
         Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.GROCERIES, customer);
 
         assertThat(bill.getGrossAmount()).isEqualTo(AMOUNT);
@@ -27,25 +27,25 @@ public class BillTest {
 
     @Test
     public void givenBillOfGroceries_whenGetPercentageDiscountType_returnNotApplicable() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.GROCERIES, new Customer(CustomerType.REGULAR, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.GROCERIES, new Customer(CustomerType.REGULAR, DATE));
         assertThat(bill.getApplicablePercentageDiscount()).isEqualTo(DiscountType.NOT_APPLICABLE);
     }
 
     @Test
     public void givenBillOfEmployee_whenGetPercentageDiscountType_returnEmployeeDiscountType() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, DATE));
         assertThat(bill.getApplicablePercentageDiscount()).isEqualTo(DiscountType.EMPLOYEE);
     }
 
     @Test
     public void givenBillOfAffiliate_whenGetPercentageDiscountType_returnAffiliateDiscountType() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.AFFILIATE, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.AFFILIATE, DATE));
         assertThat(bill.getApplicablePercentageDiscount()).isEqualTo(DiscountType.AFFILIATE);
     }
 
     @Test
     public void givenBillOfNewRegularCustomer_whenGetPercentageDiscountType_returnNotApplicable() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.REGULAR, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.REGULAR, DATE));
         assertThat(bill.getApplicablePercentageDiscount()).isEqualTo(DiscountType.NOT_APPLICABLE);
     }
 
@@ -57,7 +57,7 @@ public class BillTest {
 
     @Test
     public void givenDiscount_whenApplyDiscountOnBill_shouldSetNetPayableAmountAndDiscountsApplied() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, DATE));
         Discount discount = new EmployeeDiscount();
 
         bill.applyDiscount(discount);
@@ -68,7 +68,7 @@ public class BillTest {
 
     @Test
     public void givenMultipleDiscount_whenApplyDiscountOnBill_shouldSetNetPayableAmountAndDiscountsApplied() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, DATE));
         Discount employeeDiscount = new EmployeeDiscount();
         Discount netDenominationDiscount = new NetDenominationDiscount();
 
@@ -81,7 +81,7 @@ public class BillTest {
 
     @Test(expected = DomainViolationException.class)
     public void givenMultiplePercentageDiscount_whenApplyDiscountOnBill_shouldThrowError() {
-        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW));
+        Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, DATE));
         Discount employeeDiscount = new EmployeeDiscount();
         Discount affiliateDiscount = new AffiliateDiscount();
 
