@@ -1,3 +1,73 @@
+#### Run the Application
+
+To run the application, using the terminal, navigate to the project directory and execute: 
+```
+make run
+```
+
+#### API Documentation
+
+API Documents is generated using [Spring Rest Docs](https://spring.io/projects/spring-restdocs).
+
+To generate:
+```
+make build
+```
+And open the generated api doc html file to a browser
+```
+app/target/generated-docs/api-guide.html
+```
+
+curl request example
+
+    $ curl 'http://localhost:30080/bills/calculate-discount' -i -X POST \
+        -H 'Content-Type: application/json' \
+        -d '{
+      "grossAmount" : {
+        "value" : 1000,
+        "currency" : "USD"
+      },
+      "itemsCategory" : "ELECTRONICS",
+      "customer" : {
+        "customerType" : "EMPLOYEE",
+        "joinedDate" : "2018-01-01"
+      }
+    }'
+
+#### Code Coverage
+
+**JaCoCo** is the code coverage tool used to generate coverage report.
+
+Code Coverage ratio is set to **90** percent
+
+     <configuration>
+        <rules>
+            <rule>
+                <element>PACKAGE</element>
+                <limits>
+                    <limit>
+                        <counter>LINE</counter>
+                        <value>COVEREDRATIO</value>
+                        <minimum>0.9</minimum>
+                    </limit>
+                </limits>
+            </rule>
+        </rules>
+    </configuration>
+
+To generate the report:
+```
+make build
+```
+And open the generated reports html file to a browser
+```
+app/target/test-report/index.html
+```
+```
+domain/target/test-report/index.html
+```
+
+
 #### Key Implementation Details
 [Java Money and Currency API](https://javamoney.github.io/) was used to apply amount calculations. 
 Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/MonetaryAmount.html) was used to represent an amount.
