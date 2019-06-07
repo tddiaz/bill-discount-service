@@ -1,0 +1,43 @@
+= bills-discount-service API Guide
+Tristan Diaz <tristan.diaz@gmail.com>
+1.0.0, June 7, 2019
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[resources]]
+= Resources
+
+[[resources-calculate-discount]]
+== Calculate Discounts
+When making a successfull call to this API endpoint, the following request parameters and body can be expected.
+
+==== Example Request
+include::{snippets}/calculate-discount/curl-request.adoc[]
+
+===== Request Body
+include::{snippets}/calculate-discount/request-body.adoc[]
+
+===== Request Fields
+include::{snippets}/calculate-discount/request-fields.adoc[]
+
+==== Example Response
+include::{snippets}/calculate-discount/http-response.adoc[]
+
+===== Response Body
+include::{snippets}/calculate-discount/response-body.adoc[]
+
+===== Response Fields
+include::{snippets}/calculate-discount/response-fields.adoc[]
+
+==== Example Error Response
+include::{snippets}/calculate-discount-error/http-response.adoc[]
+
+===== Response Body
+include::{snippets}/calculate-discount-error/response-body.adoc[]
+
+===== Response Fields
+include::{snippets}/calculate-discount-error/response-fields.adoc[]

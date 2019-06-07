@@ -18,7 +18,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface CurrencyCode {
 
-    String message() default "Invalid currency code";
+    String message() default "invalid currency code";
 
     Class<?>[] groups() default { };
 

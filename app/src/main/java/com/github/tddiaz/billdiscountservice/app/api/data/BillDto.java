@@ -1,5 +1,6 @@
 package com.github.tddiaz.billdiscountservice.app.api.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.tddiaz.billdiscountservice.app.api.validation.constraints.ItemsCategory;
 import com.github.tddiaz.billdiscountservice.domain.Bill;
 import lombok.Data;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class BillDto {
 
     @Valid

@@ -4,7 +4,9 @@ import com.github.tddiaz.billdiscountservice.app.api.validation.constraints.Curr
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.javamoney.moneta.spi.MoneyUtils;
 
+import javax.money.MonetaryAmount;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -20,4 +22,8 @@ public class AmountDto {
     @NotBlank(message = "currency is required")
     @CurrencyCode
     private String currency;
+
+    public static AmountDto valueOf(MonetaryAmount amount) {
+        return new AmountDto(MoneyUtils.getBigDecimal(amount.getNumber()), amount.getCurrency().getCurrencyCode());
+    }
 }
