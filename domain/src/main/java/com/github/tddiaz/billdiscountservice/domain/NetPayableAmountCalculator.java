@@ -1,8 +1,9 @@
 package com.github.tddiaz.billdiscountservice.domain;
 
+import lombok.NonNull;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public final class NetPayableAmountCalculator {
 
@@ -19,11 +20,7 @@ public final class NetPayableAmountCalculator {
     }
 
 
-    public static Bill calculate(Bill bill) {
-        if (Objects.isNull(bill)) {
-            throw new IllegalArgumentException("com.github.tddiaz.billdiscountservice.domain.Bill should not be null");
-        }
-
+    public static Bill calculate(@NonNull Bill bill) {
         return new NetPayableAmountCalculator().calc(bill);
     }
 

@@ -2,6 +2,7 @@ package com.github.tddiaz.billdiscountservice.domain;
 
 import com.github.tddiaz.billdiscountservice.domain.exception.DomainViolationException;
 import lombok.Getter;
+import lombok.NonNull;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.money.MonetaryAmount;
@@ -13,9 +14,9 @@ import java.util.Set;
 @Getter
 public class Bill {
     private MonetaryAmount grossAmount;
-    private MonetaryAmount netPayableAmount;
     private ItemsCategory itemsCategory;
     private Customer customer;
+    private MonetaryAmount netPayableAmount;
     private Set<Discount> discountsApplied;
 
     private Bill(MonetaryAmount grossAmount, ItemsCategory itemsCategory, Customer customer) {
@@ -24,7 +25,7 @@ public class Bill {
         this.customer = customer;
     }
 
-    public static Bill valueOf(MonetaryAmount grossAmount, ItemsCategory itemsCategory, Customer customer) {
+    public static Bill valueOf(@NonNull MonetaryAmount grossAmount, @NonNull ItemsCategory itemsCategory, @NonNull Customer customer) {
         return new Bill(grossAmount, itemsCategory, customer);
     }
 

@@ -1,6 +1,7 @@
 package com.github.tddiaz.billdiscountservice.domain;
 
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.money.MonetaryAmount;
@@ -12,7 +13,7 @@ public abstract class PercentageDiscount extends Discount {
     private final double percentage;
 
     @Override
-    public MonetaryAmount calculate(MonetaryAmount amount) {
+    public MonetaryAmount calculate(@NonNull MonetaryAmount amount) {
         final MonetaryAmount discountAmount = amount.multiply(percentage);
         this.discountedAmount = discountAmount;
 

@@ -1,5 +1,6 @@
 package com.github.tddiaz.billdiscountservice.domain;
 
+import lombok.NonNull;
 import org.javamoney.moneta.Money;
 
 import javax.money.MonetaryAmount;
@@ -10,7 +11,7 @@ public class NetDenominationDiscount extends Discount {
     private static final long DISCOUNT_VALUE = 5;
 
     @Override
-    public MonetaryAmount calculate(MonetaryAmount amount) {
+    public MonetaryAmount calculate(@NonNull MonetaryAmount amount) {
 
         final long numberOfDenominations = amount.getNumber().longValue() / DENOMINATION;
 

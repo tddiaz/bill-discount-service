@@ -14,10 +14,6 @@ public class NetPayableAmountCalculatorTest {
     private static final MonetaryAmount AMOUNT = Money.of(BigDecimal.valueOf(1000), "USD");
     private static final LocalDate NOW = LocalDate.now();
 
-    @Test(expected = IllegalArgumentException.class)
-    public void givenNullBill_whenCalculate_shouldThrowError() {
-        NetPayableAmountCalculator.calculate(null);
-    }
 
     @Test
     public void givenBillNotApplicableForPercentageDiscount_whenCalculate_shouldReturnBillWithNetPayableAmount() {
