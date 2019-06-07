@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NetPayableAmountCalculatorTest {
+public class DiscountCalculatorTest {
 
     private static final MonetaryAmount AMOUNT = Money.of(BigDecimal.valueOf(1000), "USD");
     private static final LocalDate NOW = LocalDate.now();
@@ -17,7 +17,7 @@ public class NetPayableAmountCalculatorTest {
 
     @Test
     public void givenBillNotApplicableForPercentageDiscount_whenCalculate_shouldReturnBillWithNetPayableAmount() {
-        Bill bill = NetPayableAmountCalculator
+        Bill bill = DiscountCalculator
                 .calculate(Bill.valueOf(AMOUNT, ItemsCategory.GROCERIES, new Customer(CustomerType.REGULAR, NOW)));
 
         // net denomination discount only applied
@@ -26,7 +26,7 @@ public class NetPayableAmountCalculatorTest {
 
     @Test
     public void givenBillApplicableForPercentageDiscount_whenCalculate_shouldReturnBillWithNetPayableAmount() {
-        Bill bill = NetPayableAmountCalculator
+        Bill bill = DiscountCalculator
                 .calculate(Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW)));
 
         // employee discount and net denomination discount was applied

@@ -5,12 +5,12 @@ import lombok.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class NetPayableAmountCalculator {
+public final class DiscountCalculator {
 
     private Map<DiscountType, PercentageDiscount> percentageDiscountsMap;
     private NetDenominationDiscount netDenominationDiscount;
 
-    private NetPayableAmountCalculator() {
+    private DiscountCalculator() {
         this.percentageDiscountsMap = new HashMap<>();
         this.percentageDiscountsMap.put(DiscountType.AFFILIATE, new AffiliateDiscount());
         this.percentageDiscountsMap.put(DiscountType.EMPLOYEE, new EmployeeDiscount());
@@ -21,7 +21,7 @@ public final class NetPayableAmountCalculator {
 
 
     public static Bill calculate(@NonNull Bill bill) {
-        return new NetPayableAmountCalculator().calc(bill);
+        return new DiscountCalculator().calc(bill);
     }
 
     private Bill calc(Bill bill) {
