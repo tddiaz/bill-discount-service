@@ -1,11 +1,11 @@
-#### Run the Application
+### Run the Application
 
 To run the application, using the terminal, navigate to the project directory and execute: 
 ```
 make run
 ```
 
-#### API Documentation
+### API Documentation
 
 API Documents is generated using [Spring Rest Docs](https://spring.io/projects/spring-restdocs).
 
@@ -34,7 +34,7 @@ curl request example
       }
     }'
 
-#### Code Coverage
+### Code Coverage
 
 **JaCoCo** is the code coverage tool used to generate coverage report.
 
@@ -68,7 +68,7 @@ domain/target/test-report/index.html
 ```
 
 
-#### Key Implementation Details
+### Key Implementation Details
 [Java Money and Currency API](https://javamoney.github.io/) was used to apply amount calculations. 
 Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/MonetaryAmount.html) was used to represent an amount.
 
@@ -80,13 +80,13 @@ Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/M
         private MonetaryAmount netPayableAmount;
         private Set<Discount> discountsApplied;
 
-#### Class Diagram
+### Class Diagram
 
 ![picture](class-diagram.png)
 
-#### Test Snippets
+### Test Snippets
 
-##### Employee Discount
+#### Employee Discount
 
     @Test
     public void givenAmount1000_whenCalculate_shouldReturnDiscountedValue700() {
@@ -97,7 +97,7 @@ Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/M
         assertThat(employeeDiscount.getDiscountedAmount()).isEqualTo(Money.of(BigDecimal.valueOf(300), "USD"));
     }
 
-##### Net Payable Calculator Test
+#### Net Payable Calculator Test
 
     @Test
     public void givenBillApplicableForPercentageDiscount_whenCalculate_shouldReturnBillWithNetPayableAmount() {
@@ -108,7 +108,7 @@ Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/M
         assertThat(bill.getNetPayableAmount()).isEqualTo(Money.of(BigDecimal.valueOf(665), "USD"));
     }
     
-##### Bill Test
+#### Bill Test
     @Test(expected = DomainViolationException.class)
     public void givenMultiplePercentageDiscount_whenApplyDiscountOnBill_shouldThrowError() {
         Bill bill = Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW));
@@ -119,7 +119,7 @@ Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/M
         bill.applyDiscount(affiliateDiscount);
     }
 
-##### Controller Test
+#### Controller Test
     @Test
     public void givenValidRequest_whenPost_shouldReturnDiscountedBill() throws Exception {
 
