@@ -5,19 +5,6 @@ To run the application, using the terminal, navigate to the project directory an
 make run
 ```
 
-### API Documentation
-
-API Documents is generated using [Spring Rest Docs](https://spring.io/projects/spring-restdocs).
-
-To generate:
-```
-make build
-```
-And open the generated api doc html file to a browser
-```
-app/target/generated-docs/api-guide.html
-```
-
 curl request example
 
     $ curl 'http://localhost:30080/bills/calculate-discount' -i -X POST \
@@ -33,6 +20,19 @@ curl request example
         "joinedDate" : "2018-01-01"
       }
     }'
+
+### API Documentation
+
+API Documents is generated using [Spring Rest Docs](https://spring.io/projects/spring-restdocs).
+
+To generate:
+```
+make build
+```
+And open the generated api doc html file to a browser
+```
+app/target/generated-docs/api-guide.html
+```
 
 ### Code Coverage
 
