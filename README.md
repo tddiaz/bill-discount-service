@@ -97,12 +97,12 @@ Type [MonetaryAmount](http://javadox.com/javax.money/money-api/1.0/javax/money/M
         assertThat(employeeDiscount.getDiscountedAmount()).isEqualTo(Money.of(BigDecimal.valueOf(300), "USD"));
     }
 
-#### Net Payable Calculator Test
+#### Discount Calculator Test
 
     @Test
     public void givenBillApplicableForPercentageDiscount_whenCalculate_shouldReturnBillWithNetPayableAmount() {
-        Bill bill = NetPayableAmountCalculator
-                .calculate(Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, NOW)));
+        Bill bill = DiscountCalculator
+                .calculate(Bill.valueOf(AMOUNT, ItemsCategory.ELECTRONICS, new Customer(CustomerType.EMPLOYEE, DATE)));
 
         // employee discount and net denomination discount was applied
         assertThat(bill.getNetPayableAmount()).isEqualTo(Money.of(BigDecimal.valueOf(665), "USD"));
