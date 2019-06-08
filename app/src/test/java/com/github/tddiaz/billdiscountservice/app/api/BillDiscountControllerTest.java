@@ -57,8 +57,12 @@ public class BillDiscountControllerTest {
     public void setup() {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(this.context)
-                .apply(documentationConfiguration(this.jUnitRestDocumentation))
-                .build();
+                .apply(documentationConfiguration(this.jUnitRestDocumentation)
+                        .uris()
+                        .withScheme("http")
+                        .withHost("localhost")
+                        .withPort(30080)
+                ).build();
     }
 
     @Test
